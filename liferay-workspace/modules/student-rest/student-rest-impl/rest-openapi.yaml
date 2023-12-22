@@ -58,7 +58,7 @@ paths:
       summary: Get student by ID
       operationId: getStudentById
       parameters:
-        - name: id
+        - name: studentId 
           in: query
           description: ID of the student to retrieve
           required: true
@@ -83,7 +83,7 @@ paths:
       summary: Delete student by ID
       operationId: deleteStudentById
       parameters:
-        - name: id
+        - name: studentId 
           in: query
           description: ID of the student to delete
           required: true
