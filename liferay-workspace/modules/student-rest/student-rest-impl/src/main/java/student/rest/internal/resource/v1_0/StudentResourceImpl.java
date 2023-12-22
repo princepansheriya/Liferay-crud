@@ -75,7 +75,7 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 
 			User user = userLocalService.getUser(id);
 
-			if (user != null) {
+			if (Validator.isNotNull(user)) {
 				userLocalService.deleteUser(id);
 				return Response.noContent().build();
 			} else {
@@ -143,7 +143,7 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 	public Student getStudentById(Long id) throws Exception {
 		User user = userLocalService.getUserById(id);
 
-		if (user != null) {
+		if (Validator.isNotNull(user)) {
 			return mapUserToStudent(user);
 		} else {
 			throw new Exception("Student not found");
