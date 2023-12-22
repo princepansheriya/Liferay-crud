@@ -1,0 +1,1253 @@
+info:
+    description: "ImeetingAdminRest REST API"
+    license:
+        name: "Apache 2.0"
+        url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    title: "ImeetingAdminRest"
+    version: v1.0
+openapi: 3.0.1
+paths:
+  "/delete-committee-member":
+    delete:
+      operationId: deleteCommitteeMember
+      parameters:
+        - in: query
+          name: userId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json: 
+              schema:
+                  $ref: "#/components/schemas/CommitteeMember"
+            application/xml: 
+              schema:
+                  $ref: "#/components/schemas/CommitteeMember"
+          description: "successfully deleted"
+      tags: ["CommitteeMember"]
+  "/update-committee-member":
+    post:
+      operationId: updateCommitteeMember
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommitteeMember"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/CommitteeMember"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommitteeMember"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/CommitteeMember"
+          description: "successfull"
+      tags: ["CommitteeMember"]
+  "/get-committee-member":
+    get:
+      operationId: getCommitteeMemberById
+      parameters:
+        - in: query
+          name: userId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommitteeMember"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/CommitteeMember"
+          description: ""
+      tags: ["CommitteeMember"]    
+  "/get-committee-members":
+    get:
+      operationId: getCommitteeMembersList
+      parameters:
+        - in: query
+          description: external user true or false.
+          name: externalUser
+          schema:
+            type: boolean
+        - in: query
+          description: user deleted true or false.
+          name: isDeleted
+          schema:
+            type: boolean
+        - in: query
+          description: filter by userId, name, email, phone, roleId and committee.
+          name: searchValue
+          schema:
+            type: string
+        - in: query
+          description: get user list of committees.
+          name: organizationIds
+          schema:
+            type: string
+        - in: query
+          description: Role Id exist in elastic named "userGroupRoleIds".
+          name: roleFilterIds
+          schema:
+            type: string
+        - in: query
+          description: type of entity.
+          name: type
+          schema:
+            type: integer
+        - in: query
+          description: page number where you want to redirect.
+          name: page
+          schema:
+            type: integer
+        - in: query
+          description: Number of records need in a page.
+          name: pageSize
+          schema:
+            type: integer
+        - in: query
+          description: Ex. firstName:desc, lastName:asc.
+          name: sort
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/CommitteeMember"
+            application/xml:
+             schema:
+                items:
+                  $ref: "#/components/schemas/CommitteeMember"
+          description: ""
+      tags: ["CommitteeMember"]
+  "/assign-committee-admin":
+    put:
+      operationId: assignCommitteeAdmin
+      parameters:
+        - in: query
+          description: user Id.
+          name: userId
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          description: committee Id.
+          name: committeeId
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Status"
+          description: "successfull"
+      tags: ["CommitteeMember"]
+  "/get-committee-role-details":
+    get:
+      operationId: getRoleList
+      parameters:
+        - in: query
+          description: taskRole.
+          name: taskRole
+          schema:
+            type: boolean
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/RoleList"
+            application/xml:
+             schema:
+                  $ref: "#/components/schemas/RoleList"
+          description: ""
+      tags: ["RoleList"]
+  "/update-committee-category":
+    post:
+      operationId: updateCommitteeCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommitteeCategory"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/CommitteeCategory"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommitteeCategory"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/CommitteeCategory"
+          description: ""
+      tags: ["CommitteeCategory"]
+  "/get-committee-category":
+    get:
+      operationId: getCommitteeCategory
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommitteeCategory"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/CommitteeCategory"
+          description: ""
+      tags: ["CommitteeCategory"]    
+  "/get-committee-categories":
+    get:
+      operationId: getCommitteeCategories
+      parameters:
+        - in: query
+          name: searchValue
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+        - in: query
+          description: Ex. title:desc, id:asc, description:asc.
+          name: sort
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/CommitteeCategory"
+            application/xml:
+             schema:
+                items:
+                  $ref: "#/components/schemas/CommitteeCategory"
+          description: ""
+      tags: ["CommitteeCategory"]
+  "/delete-committee-category":
+    delete:
+      operationId: deleteCommitteeCategory
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommitteeCategory"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/CommitteeCategory"
+          description: ""
+      tags: ["CommitteeCategory"]
+  "/update-committee":
+    post:
+      operationId: updateCommittee
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Committee"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Committee"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Committee"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Committee"
+          description: ""
+      tags: ["Committee"]
+  "/get-committee":
+    get:
+      operationId: getCommittee
+      parameters:
+        - in: query
+          name: organizationId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Committee"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Committee"
+          description: ""
+      tags: ["Committee"]    
+  "/get-committees":
+    get:
+      operationId: getCommittees
+      parameters:
+        - in: query
+          name: searchValue
+          schema:
+            type: string
+        - in: query
+          description: committee deleted true or false.
+          name: isDeleted
+          schema:
+            type: boolean
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+        - in: query
+          name: sort
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Committee"
+            application/xml:
+             schema:
+                items:
+                  $ref: "#/components/schemas/Committee"
+          description: ""
+      tags: ["Committee"]
+  "/delete-committee":
+    delete:
+      operationId: deleteCommittee
+      parameters:
+        - in: query
+          name: organizationId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json: 
+              schema:
+                  $ref: "#/components/schemas/Committee"
+            application/xml: 
+              schema:
+                  $ref: "#/components/schemas/Committee"
+          description: "successfully deleted"
+      tags: ["Committee"]
+  "/get-map-committees":
+    get:
+      operationId: getMapCommittees
+      parameters:
+        - in: query
+          name: type
+          schema:
+            type: integer
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Committee"
+            application/xml:
+             schema:
+                items:
+                  $ref: "#/components/schemas/Committee"
+          description: ""
+      tags: ["Committee"]
+  "/get-committees-by-role":
+    get:
+      operationId: getCommitteesByRole
+      parameters:
+        - in: query
+          description: Head true or false.
+          name: head
+          schema:
+            type: boolean
+        - in: query
+          description: Secretary true or false.
+          name: secretary
+          schema:
+            type: boolean
+        - in: query
+          description: Member true or false.
+          name: member
+          schema:
+            type: boolean
+        - in: query
+          name: searchValue
+          schema:
+            type: string
+        - in: query
+          description: get roles by entity type.
+          name: type
+          schema:
+            type: integer
+        - in: query
+          name: sort
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Committee"
+            application/xml:
+             schema:
+                items:
+                  $ref: "#/components/schemas/Committee"
+          description: ""
+      tags: ["Committee"]
+  "/update-email-setting":
+    post:
+      operationId: updateEmailSetting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Settings"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Settings"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Settings"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Settings"
+          description: ""
+      tags: ["Settings"]
+  "/get-email-setting":
+    get:
+      operationId: getEmailSetting
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Settings"
+            application/xml:
+             schema:
+                $ref: "#/components/schemas/Settings"
+          description: ""
+      tags: ["Settings"]
+  "/update-sms-setting":
+    post:
+      operationId: updateSMSSetting
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Settings"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Settings"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Settings"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Settings"
+          description: ""
+      tags: ["Settings"]
+  "/get-sms-setting":
+    get:
+      operationId: getSMSSetting
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Settings"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Settings"
+          description: ""
+      tags: ["Settings"]
+  "/send-notification":
+    post:
+      operationId: sendNotification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Notification"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Notification"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notification"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Notification"
+          description: ""
+      tags: ["Notification"]
+  "/update-notification":
+    post:
+      operationId: updateNotification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Notification"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Notification"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notification"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Notification"
+          description: ""
+      tags: ["Notification"]
+  "/get-notifications":
+    get:
+      operationId: getNotifications
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Notification"
+            application/xml:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Notification"
+          description: ""
+      tags: ["Notification"]
+  "/delete-notification":
+    delete:
+      operationId: deleteNotification
+      parameters:
+        - in: query
+          name: userNotificationEventId
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json: 
+              schema:
+                  $ref: "#/components/schemas/Notification"
+            application/xml: 
+              schema:
+                  $ref: "#/components/schemas/Notification"
+          description: ""
+      tags: ["Notification"]
+  "/get-notifications-count":
+    get:
+      operationId: getNotificationsCount
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notification"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Notification"
+          description: ""
+      tags: ["Notification"]
+  "/update-template":
+    post:
+      operationId: updateTemplate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Settings"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Settings"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Settings"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Settings"
+          description: ""
+      tags: ["Settings"]
+  "/get-template":
+    get:
+      operationId: getTemplate
+      parameters:
+        - in: query
+          description: email or sms.
+          name: type
+          schema:
+            type: integer
+        - in: query
+          description: templateType.
+          name: templateType
+          schema:
+            type: integer
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Settings"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Settings"
+          description: ""
+      tags: ["Settings"]
+  "/get-template-types":
+    get:
+      operationId: getTemplateTypes
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Settings"
+            application/xml:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Settings"
+          description: ""
+      tags: ["Settings"]
+  "/update-company-info":
+    post:
+      operationId: updateCompanyInfo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Settings"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/Settings"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Settings"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/Settings"
+          description: ""
+      tags: ["Settings"]
+  "/update-bulk-upload":
+    post:
+      operationId: updateBulkUpload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BulkUpload"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/BulkUpload"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkUpload"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/BulkUpload"
+          description: ""
+      tags: ["BulkUpload"]
+  "/get-bulk-upload-history":
+    get:
+      operationId: getBulkUploadHistory
+      parameters:
+        - in: query
+          name: searchValue
+          schema:
+            type: string
+        - in: query
+          name: type
+          schema:
+            type: integer
+        - in: query
+          description: is Sample.
+          name: isSample
+          schema:
+            type: boolean
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+        - in: query
+          name: sort
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/BulkUpload"
+            application/xml:
+              schema:
+                items:
+                  $ref: "#/components/schemas/BulkUpload"
+          description: ""
+      tags: ["BulkUpload"]
+  "/update-ldap":
+    post:
+      operationId: updateLDAP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LDAP"
+          application/xml:
+            schema:
+              $ref: "#/components/schemas/LDAP"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LDAP"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/LDAP"
+          description: ""
+      tags: ["LDAP"]
+  "/get-ldap-user":
+    get:
+      operationId: getLDAPUser
+      parameters:
+        - in: query
+          description: id.
+          name: id
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LDAP"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/LDAP"
+          description: ""
+      tags: ["LDAP"]
+  "/get-ldap-users":
+    get:
+      operationId: getLDAPUsers
+      parameters:
+        - in: query
+          name: searchValue
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+        - in: query
+          name: pageSize
+          schema:
+            type: integer
+        - in: query
+          name: sort
+          schema:
+            type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/LDAP"
+            application/xml:
+              schema:
+                items:
+                  $ref: "#/components/schemas/LDAP"
+          description: ""
+      tags: ["LDAP"]
+  "/delete-ldap-user":
+    delete:
+      operationId: deleteLDAPUser
+      parameters:
+        - in: query
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        200:
+          content:
+            application/json: 
+              schema:
+                  $ref: "#/components/schemas/LDAP"
+            application/xml: 
+              schema:
+                  $ref: "#/components/schemas/LDAP"
+          description: ""
+      tags: ["LDAP"]
+  "/get-google-auth-url":
+    get:
+      operationId: getGoogleAuthURL
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoogleAuth"
+            application/xml:
+              schema:
+                $ref: "#/components/schemas/GoogleAuth"
+          description: ""
+      tags: ["GoogleAuth"]
+components:
+  schemas:
+    Status:
+      properties:
+        statusMessage:
+          type: string
+        statusCode:
+          type: integer
+        entitys:
+          description: The entitys.
+          type: object
+    LDAP:
+      description: LDAP
+      properties:
+        id:
+          description: The id.
+          type: integer
+          format: int64
+        ldapServerId:
+          description: The ldapServerId.
+          type: integer
+          format: int64
+        url:
+          description: The url.
+          type: string
+        principal:
+          description: The principal.
+          type: string
+        credentials:
+          type: string
+        baseDN:
+          type: string
+        searchFilter:
+          type: string
+        screenName:
+          description: The Screen Name.
+          type: string
+        emailAddress:
+          description: The Email Address.
+          type: string
+        fullName:
+          type: string
+        jobTitle:
+          type: string
+        mobile:
+          type: string
+        status:
+            $ref: "#/components/schemas/Status"
+    BulkUpload:
+      description: bulk upload
+      properties:
+        id:
+          description: The id.
+          type: integer
+          format: int64
+        title:
+          description: The title.
+          type: string
+        bulkType:
+          description: The bulk type.
+          type: integer
+        attachDocumentIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        inputFileId:
+          type: integer
+          format: int64
+        outputFileId:
+          type: integer
+          format: int64
+        status:
+            $ref: "#/components/schemas/Status"
+    Notification:
+      description: user notification
+      properties:
+        userNotificationEventId:
+          description: The userNotificationEventId.
+          type: integer
+          format: int64
+        archived:
+          description: The archived.
+          type: boolean
+        sms:
+          description: send sms.
+          type: boolean
+        whatsApp:
+          description: send whatsApp.
+          type: boolean
+        email:
+          description: send email.
+          type: boolean
+        phoneNumber:
+          description: The phoneNumber.
+          type: string
+        emailAddress:
+          description: The emailAddress.
+          type: string
+        notificationText:
+          description: The notificationText.
+          type: string
+        url:
+          description: The url.
+          type: string
+        count:
+          description: archived count
+          type: integer
+        status:
+            $ref: "#/components/schemas/Status"
+    Settings:
+      description: settings
+      properties:
+        settingId:
+          description: The settingId.
+          type: integer
+          format: int64
+        host:
+          description: The host.
+          type: string
+        port:
+          description: The port.
+          type: integer
+          format: int64
+        userName:
+          description: The userName.
+          type: string
+        passWord:
+          description: The passWord.
+          type: string
+        name:
+          description: The name.
+          type: string
+        address:
+          description: The address.
+          type: string
+        tagName:
+          description: The tagName.
+          type: string
+        type:
+          description: email or sms.
+          type: integer
+        templateType:
+          description: templateType.
+          type: integer
+        subject:
+          description: The subject.
+          type: string
+        content:
+          description: The content.
+          type: string
+        isTest:
+          description: The isTest.
+          type: boolean
+        attachDocumentId:
+          type: integer
+          format: int64
+        status:
+            $ref: "#/components/schemas/Status"
+    RoleList:
+      description: roles list
+      properties:
+        roles:
+          description: The roles list.
+          type: object
+    Committee:
+      description: adding committee
+      properties:
+        createBy:
+          description: The createBy.
+          type: integer
+          format: int64
+        modifiedBy:
+          description: The modifiedBy.
+          type: integer
+          format: int64  
+        organizationId:
+          description: The organizationId.
+          type: integer
+          format: int64
+        parentCommitteeId:
+          description: The parentCommitteeId.
+          type: integer
+          format: int64
+        committeeTitle:
+          description: The committeeTitle.
+          type: string
+        committeeId:
+          description: The committeeId.
+          type: integer
+          format: int64  
+        committeeCategoryId:
+          description: The committeeCategoryId.
+          type: array
+          items:
+            type: integer
+            format: int64
+        setUpDate:
+          description: The setUpDate(English calender).
+          type: string
+        expirationDate:
+          description: The expirationDate(English calender).
+          type: string
+        description:
+          description: The description.
+          type: string
+        attachDocumentIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        userIds:
+          description: The userIds.
+          type: array
+          items:
+            type: integer
+            format: int64
+        userNames:
+          description: The userNames.
+          type: array
+          items:
+            type: string  
+        roleIds:
+          description: The roleIds.
+          type: array
+          items:
+            type: integer
+            format: int64
+        title:
+          description: The title.
+          type: string  
+        categoryTitle:
+          description: The categoryTitle.
+          type: string 
+        children:
+          description: The childCommittees.
+          type: object
+        isDisable:
+          description: The isDisable.
+          type: boolean
+        status:
+            $ref: "#/components/schemas/Status"
+    CommitteeCategory:
+      description: adding CommitteeCategory
+      properties:
+        createBy:
+          description: The createBy.
+          type: integer
+          format: int64
+        modifiedBy:
+          description: The modifiedBy.
+          type: integer
+          format: int64  
+        id:
+          description: The id.
+          type: integer
+          format: int64
+        categoryTitle:
+          description: The categoryTitle.
+          type: string
+        description:
+          description: The description.
+          type: string
+        isDisable:
+          description: The isDisable.
+          type: boolean
+        status:
+            $ref: "#/components/schemas/Status"
+    CommitteeMember:
+      description: A committeeMember entity
+      properties:
+        createBy:
+          description: The createBy.
+          type: integer
+          format: int64
+        modifiedBy:
+          description: The modifiedBy.
+          type: integer
+          format: int64
+        userId:
+          description: The committeeMember Id.
+          type: integer
+          format: int64
+        externalUser:
+          description: The externalUser.
+          type: boolean
+        externalUserOrganization:
+          description: The externalUserOrganization.
+          type: string
+        title:
+          description: The title.
+          type: string
+        firstName:
+          description: The firstName.
+          type: string
+        secondName:
+          description: The secondName.
+          type: string
+        thirdName:
+          description: The thiredName.
+          type: string 
+        familyName:
+          description: The familyName.
+          type: string
+        emails:
+          description: The Emails.
+          type: array
+          items:
+            type: string
+        phoneNumber:
+          description: The phoneNumber.
+          type: string
+        sendSMS:
+          description: The sendSMS.
+          type: boolean
+        attachFiles:
+          description: The attachFileId.
+          type: array
+          items:
+            type: integer
+            format: int64
+        profilePicture:
+          description: The profilePicture in byte[].
+          format: uri
+          type: string
+        googleCalendarSync:
+          description: The Google Calendar.
+          type: boolean
+        outlookCalendarSync:
+          description: The Outlook calendar.
+          type: boolean
+        organizations:
+          description: The Organization.
+          type: array
+          items:
+            type: string
+        organizationIds:
+          description: The organizationIds.
+          type: array
+          items:
+            type: integer
+            format: int64
+        privateDetails:
+          description: The Private details.
+          type: boolean
+        roles:
+          description: The roles details.
+          type: array
+          items:
+            type: string
+        id:
+          description: The id connect with status.
+          type: integer
+          format: int64
+        isDisable:
+          description: The isDisable.
+          type: boolean
+        status:
+            $ref: "#/components/schemas/Status"
+    GoogleAuth:
+      description: google auth
+      properties:
+        googleAuthURL:
+          description: The googleAuthURL.
+          type: string
+        isAuthorized:
+          description: The isAuthorized.
+          type: boolean
+        status:
+            $ref: "#/components/schemas/Status"
