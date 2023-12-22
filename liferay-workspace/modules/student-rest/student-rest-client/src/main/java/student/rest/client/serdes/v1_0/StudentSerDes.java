@@ -12,7 +12,7 @@ import student.rest.client.dto.v1_0.Student;
 import student.rest.client.json.BaseJSONParser;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Generated("")

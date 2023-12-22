@@ -15,7 +15,7 @@ import student.rest.client.problem.Problem;
 import student.rest.client.serdes.v1_0.StudentSerDes;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Generated("")

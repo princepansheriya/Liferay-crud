@@ -3,7 +3,7 @@ package student.rest.client.function;
 import javax.annotation.Generated;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @FunctionalInterface

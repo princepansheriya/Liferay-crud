@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.ReferenceScope;
 import student.rest.resource.v1_0.StudentResource;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Component(immediate = true, service = StudentResource.Factory.class)

@@ -17,7 +17,7 @@ import student.rest.client.aggregation.Facet;
 import student.rest.client.json.BaseJSONParser;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Generated("")

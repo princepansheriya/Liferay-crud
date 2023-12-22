@@ -7,7 +7,7 @@ import javax.annotation.Generated;
 import student.rest.client.json.BaseJSONParser;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Generated("")

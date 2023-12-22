@@ -16,7 +16,7 @@ import student.rest.internal.graphql.query.v1_0.Query;
 import student.rest.resource.v1_0.StudentResource;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Component(immediate = true, service = ServletData.class)

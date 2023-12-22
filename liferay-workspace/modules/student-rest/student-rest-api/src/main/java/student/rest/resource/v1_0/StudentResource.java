@@ -33,7 +33,7 @@ import student.rest.dto.v1_0.Student;
  *
  *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/student-rest/v1.0
  *
- * @author rahul
+ * @author prince
  * @generated
  */
 @Generated("")

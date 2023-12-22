@@ -10,7 +10,7 @@ import student.rest.client.function.UnsafeSupplier;
 import student.rest.client.serdes.v1_0.StudentSerDes;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Generated("")

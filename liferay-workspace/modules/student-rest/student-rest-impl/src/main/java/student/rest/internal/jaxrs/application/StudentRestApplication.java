@@ -7,7 +7,7 @@ import javax.ws.rs.core.Application;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Component(

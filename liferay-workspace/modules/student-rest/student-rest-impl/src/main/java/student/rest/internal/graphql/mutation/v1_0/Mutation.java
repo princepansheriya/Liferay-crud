@@ -26,7 +26,7 @@ import student.rest.dto.v1_0.Student;
 import student.rest.resource.v1_0.StudentResource;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Generated("")

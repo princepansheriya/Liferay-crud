@@ -3,7 +3,7 @@ package student.rest.client.pagination;
 import javax.annotation.Generated;
 
 /**
- * @author rahul
+ * @author prince
  * @generated
  */
 @Generated("")
