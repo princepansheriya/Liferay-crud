@@ -1,6 +1,5 @@
 package student.rest.internal.resource.v1_0;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -45,11 +44,9 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 		student.setId(user.getUserId());
 		student.setFirstname(user.getFirstName());
 		student.setLastname(user.getLastName());
+		student.setMobilenumber("");
 
-		Serializable mobileNumberAttr = user.getExpandoBridge().getAttribute("mobilenumber");
-		if (mobileNumberAttr != null) {
-			student.setMobilenumber(String.valueOf(mobileNumberAttr));
-		}
+		
 
 		return student;
 	}
@@ -64,32 +61,26 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 
 		}
 		
-		_log.error("------------------");
+		
 		return Page.of(students);
 	}
 
 	@Override
-	public Response deleteStudentById(Long id) throws Exception {
+	public Response deleteStudentById(Long id) {
+	    try {
+	        User user = userLocalService.getUser(id);
 
-		try {
-
-			User user = userLocalService.getUser(id);
-
-			if (Validator.isNotNull(user)) {
-				userLocalService.deleteUser(id);
-				return Response.noContent().build();
-			} else {
-
-				return Response.status(Response.Status.NOT_FOUND).entity("Student not found").build();
-			}
-		} catch (NoSuchUserException e) {
-
-			return Response.status(Response.Status.NOT_FOUND).entity("Student not found").build();
-		} catch (Exception e) {
-
-			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to delete student").build();
-		}
+	        if (Validator.isNotNull(user)) {
+	            userLocalService.deleteUser(id);
+	            return Response.noContent().build();
+	        } else {
+	            return Response.status(Response.Status.NOT_FOUND).entity("Student not found").build();
+	        }
+	    } catch (Exception e) {
+	        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to delete student").build();
+	    }
 	}
+
 
 	@Override
 	public Student createStudent(Student student) throws Exception {
@@ -97,8 +88,7 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 			
 
 			long userId = student.getId();
-			System.out.println(userId);
-
+			
 			if (Validator.isNull(userId)) {
 
 				
@@ -134,8 +124,6 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 			_log.error(e.getMessage(), e);
 		}
 
-		
-		
 		return student;
 	}
 
