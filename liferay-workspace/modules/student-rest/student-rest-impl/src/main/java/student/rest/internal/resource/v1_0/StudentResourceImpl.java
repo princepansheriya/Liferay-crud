@@ -46,8 +46,6 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 		student.setLastname(user.getLastName());
 		student.setMobilenumber("");
 
-		
-
 		return student;
 	}
 
@@ -60,38 +58,34 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 			students.add(mapUserToStudent(user));
 
 		}
-		
-		
+
 		return Page.of(students);
 	}
 
 	@Override
 	public Response deleteStudentById(Long id) {
-	    try {
-	        User user = userLocalService.getUser(id);
+		try {
+			User user = userLocalService.getUser(id);
 
-	        if (Validator.isNotNull(user)) {
-	            userLocalService.deleteUser(id);
-	            return Response.noContent().build();
-	        } else {
-	            return Response.status(Response.Status.NOT_FOUND).entity("Student not found").build();
-	        }
-	    } catch (Exception e) {
-	        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to delete student").build();
-	    }
+			if (Validator.isNotNull(user)) {
+				userLocalService.deleteUser(id);
+				return Response.noContent().build();
+			} else {
+				return Response.status(Response.Status.NOT_FOUND).entity("Student not found").build();
+			}
+		} catch (Exception e) {
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity("Failed to delete student").build();
+		}
 	}
-
 
 	@Override
 	public Student createStudent(Student student) throws Exception {
 		try {
-			
 
 			long userId = student.getId();
-			
+
 			if (Validator.isNull(userId)) {
 
-				
 				User newUser = userLocalService.addUser(contextUser.getUserId(), contextUser.getCompanyId(), true,
 						StringPool.BLANK, StringPool.BLANK, true, StringPool.BLANK, student.getEmail(),
 						contextAcceptLanguage.getPreferredLocale(), student.getFirstname(), StringPool.BLANK,
@@ -99,8 +93,6 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 						StringPool.BLANK, GetterUtil.DEFAULT_INTEGER, GetterUtil.DEFAULT_LONG_VALUES,
 						GetterUtil.DEFAULT_LONG_VALUES, GetterUtil.DEFAULT_LONG_VALUES, GetterUtil.DEFAULT_LONG_VALUES,
 						false, new ServiceContext());
-
-				
 
 				student.setId(newUser.getUserId());
 
@@ -113,8 +105,6 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 				existingUser.setEmailAddress(student.getEmail());
 
 				User updatedUser = userLocalService.updateUser(existingUser);
-
-				
 
 				student.setId(updatedUser.getUserId());
 

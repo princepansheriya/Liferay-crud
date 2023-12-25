@@ -27,31 +27,22 @@ import org.osgi.service.component.annotations.Reference;
  * @author prince
  * @generated
  */
-@Component(
-	properties = "OSGI-INF/liferay/rest/v1_0/openapi.properties",
-	service = OpenAPIResourceImpl.class
-)
+@Component(properties = "OSGI-INF/liferay/rest/v1_0/openapi.properties", service = OpenAPIResourceImpl.class)
 @Generated("")
-@OpenAPIDefinition(
-	info = @Info(description = "StudentRest REST API", license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html"), title = "StudentRest", version = "v1.0")
-)
+@OpenAPIDefinition(info = @Info(description = "StudentRest REST API", license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html"), title = "StudentRest", version = "v1.0"))
 @Path("/v1.0")
 public class OpenAPIResourceImpl {
 
 	@GET
 	@Path("/openapi.{type:json|yaml}")
-	@Produces({MediaType.APPLICATION_JSON, "application/yaml"})
-	public Response getOpenAPI(@PathParam("type") String type)
-		throws Exception {
+	@Produces({ MediaType.APPLICATION_JSON, "application/yaml" })
+	public Response getOpenAPI(@PathParam("type") String type) throws Exception {
 
 		try {
-			Class<? extends OpenAPIResource> clazz =
-				_openAPIResource.getClass();
+			Class<? extends OpenAPIResource> clazz = _openAPIResource.getClass();
 
-			clazz.getMethod(
-				"getOpenAPI", Set.class, String.class, UriInfo.class);
-		}
-		catch (NoSuchMethodException noSuchMethodException) {
+			clazz.getMethod("getOpenAPI", Set.class, String.class, UriInfo.class);
+		} catch (NoSuchMethodException noSuchMethodException) {
 			return _openAPIResource.getOpenAPI(_resourceClasses, type);
 		}
 

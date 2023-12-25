@@ -52,13 +52,16 @@ public class Student implements Serializable {
 	}
 
 	@JsonIgnore
-	public void setEmail(UnsafeSupplier<String, Exception> emailUnsafeSupplier) {
+	public void setEmail(
+		UnsafeSupplier<String, Exception> emailUnsafeSupplier) {
 
 		try {
 			email = emailUnsafeSupplier.get();
-		} catch (RuntimeException re) {
+		}
+		catch (RuntimeException re) {
 			throw re;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -77,13 +80,16 @@ public class Student implements Serializable {
 	}
 
 	@JsonIgnore
-	public void setFirstname(UnsafeSupplier<String, Exception> firstnameUnsafeSupplier) {
+	public void setFirstname(
+		UnsafeSupplier<String, Exception> firstnameUnsafeSupplier) {
 
 		try {
 			firstname = firstnameUnsafeSupplier.get();
-		} catch (RuntimeException re) {
+		}
+		catch (RuntimeException re) {
 			throw re;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -93,7 +99,7 @@ public class Student implements Serializable {
 	protected String firstname;
 
 	@Schema
-	public @GraphQLField String getGender() {
+	public @GraphQLField  String getGender() {
 		return gender;
 	}
 
@@ -102,13 +108,16 @@ public class Student implements Serializable {
 	}
 
 	@JsonIgnore
-	public void setGender(UnsafeSupplier<String, Exception> genderUnsafeSupplier) {
+	public void setGender(
+		UnsafeSupplier<String, Exception> genderUnsafeSupplier) {
 
 		try {
 			gender = genderUnsafeSupplier.get();
-		} catch (RuntimeException re) {
+		}
+		catch (RuntimeException re) {
 			throw re;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -130,9 +139,11 @@ public class Student implements Serializable {
 	public void setId(UnsafeSupplier<Long, Exception> idUnsafeSupplier) {
 		try {
 			id = idUnsafeSupplier.get();
-		} catch (RuntimeException re) {
+		}
+		catch (RuntimeException re) {
 			throw re;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -151,13 +162,16 @@ public class Student implements Serializable {
 	}
 
 	@JsonIgnore
-	public void setLastname(UnsafeSupplier<String, Exception> lastnameUnsafeSupplier) {
+	public void setLastname(
+		UnsafeSupplier<String, Exception> lastnameUnsafeSupplier) {
 
 		try {
 			lastname = lastnameUnsafeSupplier.get();
-		} catch (RuntimeException re) {
+		}
+		catch (RuntimeException re) {
 			throw re;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -176,13 +190,16 @@ public class Student implements Serializable {
 	}
 
 	@JsonIgnore
-	public void setMobilenumber(UnsafeSupplier<String, Exception> mobilenumberUnsafeSupplier) {
+	public void setMobilenumber(
+		UnsafeSupplier<String, Exception> mobilenumberUnsafeSupplier) {
 
 		try {
 			mobilenumber = mobilenumberUnsafeSupplier.get();
-		} catch (RuntimeException re) {
+		}
+		catch (RuntimeException re) {
 			throw re;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -201,7 +218,7 @@ public class Student implements Serializable {
 			return false;
 		}
 
-		Student student = (Student) object;
+		Student student = (Student)object;
 
 		return Objects.equals(toString(), student.toString());
 	}
@@ -303,11 +320,16 @@ public class Student implements Serializable {
 		return sb.toString();
 	}
 
-	@Schema(accessMode = Schema.AccessMode.READ_ONLY, defaultValue = "student.rest.dto.v1_0.Student", name = "x-class-name")
+	@Schema(
+		accessMode = Schema.AccessMode.READ_ONLY,
+		defaultValue = "student.rest.dto.v1_0.Student", name = "x-class-name"
+	)
 	public String xClassName;
 
 	private static String _escape(Object object) {
-		return StringUtil.replace(String.valueOf(object), _JSON_ESCAPE_STRINGS[0], _JSON_ESCAPE_STRINGS[1]);
+		return StringUtil.replace(
+			String.valueOf(object), _JSON_ESCAPE_STRINGS[0],
+			_JSON_ESCAPE_STRINGS[1]);
 	}
 
 	private static boolean _isArray(Object value) {
@@ -341,14 +363,15 @@ public class Student implements Serializable {
 			if (_isArray(value)) {
 				sb.append("[");
 
-				Object[] valueArray = (Object[]) value;
+				Object[] valueArray = (Object[])value;
 
 				for (int i = 0; i < valueArray.length; i++) {
 					if (valueArray[i] instanceof String) {
 						sb.append("\"");
 						sb.append(valueArray[i]);
 						sb.append("\"");
-					} else {
+					}
+					else {
 						sb.append(valueArray[i]);
 					}
 
@@ -358,13 +381,16 @@ public class Student implements Serializable {
 				}
 
 				sb.append("]");
-			} else if (value instanceof Map) {
-				sb.append(_toJSON((Map<String, ?>) value));
-			} else if (value instanceof String) {
+			}
+			else if (value instanceof Map) {
+				sb.append(_toJSON((Map<String, ?>)value));
+			}
+			else if (value instanceof String) {
 				sb.append("\"");
 				sb.append(_escape(value));
 				sb.append("\"");
-			} else {
+			}
+			else {
 				sb.append(value);
 			}
 
@@ -378,7 +404,9 @@ public class Student implements Serializable {
 		return sb.toString();
 	}
 
-	private static final String[][] _JSON_ESCAPE_STRINGS = { { "\\", "\"", "\b", "\f", "\n", "\r", "\t" },
-			{ "\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t" } };
+	private static final String[][] _JSON_ESCAPE_STRINGS = {
+		{"\\", "\"", "\b", "\f", "\n", "\r", "\t"},
+		{"\\\\", "\\\"", "\\b", "\\f", "\\n", "\\r", "\\t"}
+	};
 
 }

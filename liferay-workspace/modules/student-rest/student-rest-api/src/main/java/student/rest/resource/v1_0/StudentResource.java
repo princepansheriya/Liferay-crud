@@ -31,7 +31,8 @@ import student.rest.dto.v1_0.Student;
 /**
  * To access this resource, run:
  *
- *     curl -u your@email.com:yourpassword -D - http://localhost:8080/o/student-rest/v1.0
+ * curl -u your@email.com:yourpassword -D -
+ * http://localhost:8080/o/student-rest/v1.0
  *
  * @author prince
  * @generated
@@ -48,58 +49,46 @@ public interface StudentResource {
 
 	public Student createStudent(Student student) throws Exception;
 
-	public Student getStudentById(Long id) throws Exception;
+	public Student getStudentById(Long studentId) throws Exception;
 
-	public Response deleteStudentById(Long id) throws Exception;
+	public Response deleteStudentById(Long studentId) throws Exception;
 
-	public default void setContextAcceptLanguage(
-		AcceptLanguage contextAcceptLanguage) {
+	public default void setContextAcceptLanguage(AcceptLanguage contextAcceptLanguage) {
 	}
 
-	public void setContextCompany(
-		com.liferay.portal.kernel.model.Company contextCompany);
+	public void setContextCompany(com.liferay.portal.kernel.model.Company contextCompany);
 
-	public default void setContextHttpServletRequest(
-		HttpServletRequest contextHttpServletRequest) {
+	public default void setContextHttpServletRequest(HttpServletRequest contextHttpServletRequest) {
 	}
 
-	public default void setContextHttpServletResponse(
-		HttpServletResponse contextHttpServletResponse) {
+	public default void setContextHttpServletResponse(HttpServletResponse contextHttpServletResponse) {
 	}
 
 	public default void setContextUriInfo(UriInfo contextUriInfo) {
 	}
 
-	public void setContextUser(
-		com.liferay.portal.kernel.model.User contextUser);
+	public void setContextUser(com.liferay.portal.kernel.model.User contextUser);
 
-	public void setExpressionConvert(
-		ExpressionConvert<Filter> expressionConvert);
+	public void setExpressionConvert(ExpressionConvert<Filter> expressionConvert);
 
-	public void setFilterParserProvider(
-		FilterParserProvider filterParserProvider);
+	public void setFilterParserProvider(FilterParserProvider filterParserProvider);
 
 	public void setGroupLocalService(GroupLocalService groupLocalService);
 
-	public void setResourceActionLocalService(
-		ResourceActionLocalService resourceActionLocalService);
+	public void setResourceActionLocalService(ResourceActionLocalService resourceActionLocalService);
 
-	public void setResourcePermissionLocalService(
-		ResourcePermissionLocalService resourcePermissionLocalService);
+	public void setResourcePermissionLocalService(ResourcePermissionLocalService resourcePermissionLocalService);
 
 	public void setRoleLocalService(RoleLocalService roleLocalService);
 
 	public void setVulcanBatchEngineImportTaskResource(
-		VulcanBatchEngineImportTaskResource
-			vulcanBatchEngineImportTaskResource);
+			VulcanBatchEngineImportTaskResource vulcanBatchEngineImportTaskResource);
 
 	public default Filter toFilter(String filterString) {
-		return toFilter(
-			filterString, Collections.<String, List<String>>emptyMap());
+		return toFilter(filterString, Collections.<String, List<String>>emptyMap());
 	}
 
-	public default Filter toFilter(
-		String filterString, Map<String, List<String>> multivaluedMap) {
+	public default Filter toFilter(String filterString, Map<String, List<String>> multivaluedMap) {
 
 		return null;
 	}
@@ -117,11 +106,9 @@ public interface StudentResource {
 
 		public Builder checkPermissions(boolean checkPermissions);
 
-		public Builder httpServletRequest(
-			HttpServletRequest httpServletRequest);
+		public Builder httpServletRequest(HttpServletRequest httpServletRequest);
 
-		public Builder httpServletResponse(
-			HttpServletResponse httpServletResponse);
+		public Builder httpServletResponse(HttpServletResponse httpServletResponse);
 
 		public Builder preferredLocale(Locale preferredLocale);
 
