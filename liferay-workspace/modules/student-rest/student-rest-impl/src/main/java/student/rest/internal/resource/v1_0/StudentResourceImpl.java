@@ -81,11 +81,10 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 	@Override
 	public Student createStudent(Student student) throws Exception {
 		try {
-
 			long userId = student.getId();
+			User existingUser = userLocalService.fetchUser(userId);
 
-			if (Validator.isNull(userId)) {
-
+			if (Validator.isNull(existingUser)) {
 				User newUser = userLocalService.addUser(contextUser.getUserId(), contextUser.getCompanyId(), true,
 						StringPool.BLANK, StringPool.BLANK, true, StringPool.BLANK, student.getEmail(),
 						contextAcceptLanguage.getPreferredLocale(), student.getFirstname(), StringPool.BLANK,
@@ -95,11 +94,7 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 						false, new ServiceContext());
 
 				student.setId(newUser.getUserId());
-
 			} else {
-
-				User existingUser = userLocalService.getUser(userId);
-
 				existingUser.setFirstName(student.getFirstname());
 				existingUser.setLastName(student.getLastname());
 				existingUser.setEmailAddress(student.getEmail());
@@ -107,7 +102,6 @@ public class StudentResourceImpl extends BaseStudentResourceImpl {
 				User updatedUser = userLocalService.updateUser(existingUser);
 
 				student.setId(updatedUser.getUserId());
-
 			}
 
 		} catch (Exception e) {
