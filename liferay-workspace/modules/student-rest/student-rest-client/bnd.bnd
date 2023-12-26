@@ -1,0 +1,3 @@
+Bundle-Name: student-rest-client
+Bundle-SymbolicName: student.rest.client
+Bundle-Version: 1.0.0

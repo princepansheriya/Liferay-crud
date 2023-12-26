@@ -1,0 +1,3 @@
+Bundle-Name: student-rest-impl
+Bundle-SymbolicName: student.rest.impl
+Bundle-Version: 1.0.0

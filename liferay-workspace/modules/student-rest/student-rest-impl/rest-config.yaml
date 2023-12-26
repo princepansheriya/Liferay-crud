@@ -1,0 +1,9 @@
+apiDir: "../student-rest-api/src/main/java"
+apiPackagePath: "student.rest"
+application:
+    baseURI: "/student-rest"
+    className: "StudentRestApplication"
+    name: "StudentRest"
+author: "rahul"
+clientDir: "../student-rest-client/src/main/java"
+testDir: "../student-rest-test/src/testIntegration/java"
